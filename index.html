@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish Kumar | Data Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom styles for typing cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        /* Smooth transition for dark mode */
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+    
+    <script>
+        // Tailwind Dark Mode Config
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-zinc-900 dark:text-white min-h-screen flex flex-col font-sans">
+
+    <nav class="w-full pt-6 px-4 md:px-12 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-tight">Manish Kumar</div>
+        
+        <div class="hidden md:flex bg-gray-200/60 dark:bg-zinc-800/60 rounded-full px-6 py-2 gap-6 text-sm font-medium">
+            <a href="#home" class="bg-black text-white dark:bg-white dark:text-black px-4 py-1 rounded-full">Home</a>
+            <a href="#about" class="hover:text-gray-500 py-1">About</a>
+            <a href="#skills" class="hover:text-gray-500 py-1">Skills</a>
+            <a href="#projects" class="hover:text-gray-500 py-1">Projects</a>
+            <a href="#contact" class="hover:text-gray-500 py-1">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <a href="YOUR_RESUME_LINK_HERE.pdf" target="_blank" class="hidden md:block bg-black text-white dark:bg-white dark:text-black px-5 py-2 rounded-full text-sm font-semibold hover:opacity-80 transition">
+                Resume
+            </a>
+            <button id="theme-toggle" class="bg-gray-200 dark:bg-zinc-800 flex items-center gap-2 px-3 py-2 rounded-full text-xs font-semibold uppercase tracking-wider">
+                <span id="theme-text">Day Mode</span>
+                <div class="bg-white dark:bg-black text-black dark:text-white rounded-full p-1 h-6 w-6 flex items-center justify-center">
+                    <i class="fa-solid fa-sun" id="theme-icon"></i>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 mt-16 md:mt-24">
+        
+        <div class="relative w-28 h-28 mb-4">
+            <img src="https://ui-avatars.com/api/?name=Manish+Kumar&background=random&size=256" alt="Manish Kumar" class="w-full h-full object-cover rounded-full shadow-lg border-2 border-white dark:border-zinc-800">
+            <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white dark:bg-white dark:text-black px-3 py-1 rounded-full text-xs font-bold shadow-md">
+                •••
+            </div>
+        </div>
+
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mt-6 leading-tight">
+            Hi there, <br> I'm Manish
+        </h1>
+
+        <div class="mt-6 text-xl md:text-2xl text-gray-700 dark:text-gray-300">
+            <span id="typewriter" class="typing-cursor font-medium"></span>
+        </div>
+
+        <p class="max-w-2xl mt-4 text-gray-500 dark:text-gray-400 text-md md:text-lg">
+            Detail-oriented Data Analyst focused on building a strong foundation in SQL, Python, Tableau, and actionable business insights.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mt-8 justify-center">
+            <a href="#projects" class="bg-black text-white dark:bg-white dark:text-black px-6 py-3 rounded-full font-semibold hover:opacity-80 transition">
+                View Projects
+            </a>
+            <a href="#contact" class="border border-gray-300 dark:border-zinc-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 dark:hover:bg-zinc-800 transition flex items-center gap-2">
+                Contact Me <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="mt-12 mb-10 flex items-center gap-2 bg-gray-200/50 dark:bg-zinc-800/50 px-4 py-2 rounded-full text-sm text-gray-600 dark:text-gray-300 font-medium">
+            <i class="fa-solid fa-location-dot text-red-500"></i> Ambedkar Nagar, UP
+        </div>
+    </main>
+
+    <script>
+        // Typing Effect Logic
+        const words = ["Data Analyst", "SQL & Tableau Specialist", "Problem Solver"];
+        let i = 0;
+        let timer;
+        
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typewriter').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                };
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typewriter').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) { i++; } else { i = 0; }
+                    typingEffect();
+                    return false;
+                };
+                timer = setTimeout(loopDeleting, 50);
+            };
+            loopDeleting();
+        }
+        typingEffect(); // Start typing
+
+        // Dark/Light Mode Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeText = document.getElementById('theme-text');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                themeText.innerText = 'NIGHT MODE';
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                themeText.innerText = 'DAY MODE';
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+    </script>
+</body>
+</html>
